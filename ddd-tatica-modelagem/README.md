@@ -1,3 +1,5 @@
+### Para subir o projeto
+
 ## Iniciando instância do Docker
 ```
 docker-compose up -d
@@ -7,6 +9,13 @@ docker-compose up -d
 ```
 docker exec -it nodejs bash
 ```
+
+## Instalando os pacotes
+```
+npm i
+```
+
+### Comandos úteis utilizados na construção do projeto
 
 ## Instalando Typescrypt
 ```
