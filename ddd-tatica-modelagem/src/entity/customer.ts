@@ -10,10 +10,10 @@ ter 2 estruturas onde:
 class Customer {
     _id: string;
     _name: string;
-    _address: string = "";
+    _address!: Address; // inicializacao nao obrigatoria com "!"
     _active: boolean = false;
 
-    constructor(id: string, name: string, address: string) {
+    constructor(id: string, name: string) {
         this._id = id;
         this._name = name;
         this.validate();
@@ -52,18 +52,18 @@ class Customer {
         this._name = name;
     }
 
-    get address(): string {
+    get address(): Address {
         return this._address;
     }
 
-    set address(address: string) {
+    set address(address: Address) {
         this._address = address;
     }
 
     // exemplo de expressar a regra, ao inves de apenas usar "getters x setters"
     activateCustomer() {
         // garantindo consistencia
-        if (this._address.length === 0) {
+        if (this._address === undefined) {
             throw new Error("Address is required to activate customer!")
         }
         this._active = true;
