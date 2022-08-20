@@ -1,43 +1,43 @@
-### Para subir o projeto
+## Para subir o projeto
 
-## Iniciando instância do Docker
+### Iniciando instância do Docker
 ```
 docker-compose up -d
 ```
 
-## Ingressar na instância do Docker
+### Ingressar na instância do Docker
 ```
 docker exec -it nodejs bash
 ```
 
-## Instalando os pacotes
+### Instalando os pacotes
 ```
 npm i
 ```
 
-### Comandos úteis utilizados na construção do projeto
+## Comandos úteis utilizados na construção do projeto
 
-## Instalando Typescrypt
+### Instalando Typescrypt
 ```
 npm i typescript --save-dev
 ```
 
-## Iniciando projeto Typescrypt
+### Iniciando projeto Typescrypt
 ```
 npx tsc --init
 ```
 
-## Compilar projeto Typescrypt
+### Compilar projeto Typescrypt
 ```
 npx tsc
 ```
 
-## Instalando Lint para Typescrypt
+### Instalando Lint para Typescrypt
 ```
 npm i tslint --save-dev
 ```
 
-## Iniciando Lint para Typescrypt
+### Iniciando Lint para Typescrypt
 ```
 npx tslint --init
 ```
