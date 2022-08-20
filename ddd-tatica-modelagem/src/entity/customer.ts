@@ -7,7 +7,9 @@ ter 2 estruturas onde:
 
 */
 
-class Customer {
+import Address from "./address";
+
+export default class Customer {
     _id: string;
     _name: string;
     _address!: Address; // inicializacao nao obrigatoria com "!"
