@@ -1,8 +1,12 @@
 ## Iniciando instância do Docker
+```
 docker-compose up -d
+```
 
 ## Ingressar na instância do Docker
+```
 docker exec -it nodejs bash
+```
 
 ## Instalando Typescrypt
 ```
