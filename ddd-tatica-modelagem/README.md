@@ -56,3 +56,8 @@ npm i tslint --save-dev
 ```
 npx tslint --init
 ```
+
+### Executar Testes Unitarios
+```
+npm test
+```
