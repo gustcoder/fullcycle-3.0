@@ -10,10 +10,10 @@ ter 2 estruturas onde:
 import Address from "./address";
 
 export default class Customer {
-    _id: string;
-    _name: string;
-    _address!: Address; // inicializacao nao obrigatoria com "!"
-    _active: boolean = false;
+    private _id: string;
+    private _name: string;
+    private _address!: Address; // inicializacao nao obrigatoria com "!"
+    private _active: boolean = false;
 
     constructor(id: string, name: string) {
         this._id = id;
@@ -21,13 +21,13 @@ export default class Customer {
         this.validate();
     }
 
-    validate() {
-        if (this._name.length === 0) {
-            throw new Error("Name is required!");
-        }
-
+    validate() {        
         if (this._id.length === 0) {
             throw new Error("Id is required!");
+        }
+
+        if (this._name.length === 0) {
+            throw new Error("Name is required!");
         }
     }
 
@@ -52,10 +52,7 @@ export default class Customer {
     // aqui expressa uma intencao/pode conter regra de negocio (semantica faz a diferenca mesmo o resultado sendo o mesmo)
     changeName(name: string) {
         this._name = name;
-    }
-
-    get address(): Address {
-        return this._address;
+        this.validate(); // garantir a consistencia da entidade
     }
 
     set address(address: Address) {
@@ -73,5 +70,9 @@ export default class Customer {
 
     deactivateCustomer() {
         this._active = false;
+    }
+
+    isActive (): boolean {
+        return this._active;
     }
 }
