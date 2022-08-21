@@ -68,3 +68,6 @@ transform: {
 "^.+\.(t|j)sx?$": ["@swc/jest"]
 },
 ```
+
+### Cobertura atual dos testes
+![image](https://user-images.githubusercontent.com/52874054/185811710-7e33fb76-56a2-4576-a660-36ce326aacc7.png)
