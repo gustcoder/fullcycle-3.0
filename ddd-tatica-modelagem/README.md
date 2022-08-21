@@ -61,3 +61,10 @@ npx tslint --init
 ```
 npm test
 ```
+### Adicionar config ao jest.config.ts
+```
+// serve para passar por todos os arquivos js ou ts (opcionalmente jsx e tsx) na hora de rodar os testes
+transform: {
+"^.+\.(t|j)sx?$": ["@swc/jest"]
+},
+```
