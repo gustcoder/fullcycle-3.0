@@ -2,3 +2,5 @@ node_modules
 .env
 .env.backup
 yarn-error.log
+coverage
+dist

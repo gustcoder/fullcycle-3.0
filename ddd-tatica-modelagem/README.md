@@ -15,6 +15,21 @@ docker exec -it nodejs bash
 npm i
 ```
 
+### Instalando o Jest + Executor Typescrypt
+```
+npm i -D jest @types/jest ts-node --save-dev
+```
+
+### Instalando o SWC: compilador em Rust para transpilar TS/JS
+```
+npm i -D @swc/jest @swc/cli @swc/core
+```
+
+### Inicializando o Jest
+```
+npx jest --init
+```
+
 ## Comandos úteis utilizados na construção do projeto
 
 ### Instalando Typescrypt
