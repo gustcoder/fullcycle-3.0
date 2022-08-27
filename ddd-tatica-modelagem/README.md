@@ -70,4 +70,5 @@ transform: {
 ```
 
 ### Cobertura atual dos testes
-![image](https://user-images.githubusercontent.com/52874054/185811710-7e33fb76-56a2-4576-a660-36ce326aacc7.png)
+![image](https://user-images.githubusercontent.com/52874054/187035903-b6c8a6db-57f5-4344-8f84-8ff157585587.png)
+
