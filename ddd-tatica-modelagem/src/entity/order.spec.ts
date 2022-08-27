@@ -20,6 +20,24 @@ describe("Order Unit Tests", () => {
         .toThrowError("Order ID is required!");
     });
 
+    it("should throw an error if name is empty", () => {
+        expect(() => {
+            const product = new Product("1", "", 899);
+            const items = new OrderItem("1", product.id, product.name, product.price, 1);
+            const order = new Order("1", "1", [items]);
+        })
+        .toThrowError("Product name is required!");
+    });
+
+    it("should throw an error if product price is invalid", () => {
+        expect(() => {
+            const product = new Product("1", "Teclado Casiotone CT-S200", -1000);
+            const items = new OrderItem("1", product.id, product.name, product.price, 1);
+            const order = new Order("1", "1", [items]);
+        })
+        .toThrowError("Product price is invalid!");
+    });    
+
     it("should throw an error if customer id is empty", () => {
         expect(() => {
             const product = new Product("1", "Teclado Casiotone CT-S200", 899);
