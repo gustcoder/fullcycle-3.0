@@ -29,7 +29,7 @@ export default class Order {
     }
 
     total(): number {
-        this._total = this._items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        this._total = this._items.reduce((acc, item) => acc + item.price, 0);
 
         return this._total
     }

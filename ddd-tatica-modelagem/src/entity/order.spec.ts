@@ -67,4 +67,19 @@ describe("Order Unit Tests", () => {
 
         expect(order.total()).toBe(1010);
     });
+
+    it("should test the return of quantity", () => {
+        const product = new Product("1", "Teclado Casiotone CT-S200", 899);
+        const item = new OrderItem("1", product.id, product.name, product.price, 1);
+
+        expect(item.quantity).toBe(1);
+    });
+    
+    it("should throw an error if items is empty", () => {
+        expect(() => {
+            const product = new Product("1", "Teclado Casiotone CT-S200", 899);
+            const item = new OrderItem("1", product.id, product.name, product.price, 0);
+        })
+        .toThrowError("Quantity must be greater than zero!");
+    });    
 });
