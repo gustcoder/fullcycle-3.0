@@ -68,6 +68,10 @@ transform: {
 "^.+\.(t|j)sx?$": ["@swc/jest"]
 },
 ```
+### Adicionar gerador de UUID
+```
+npm i uuid @types/uuid
+```
 
 ### Cobertura atual dos testes
 ![image](https://user-images.githubusercontent.com/52874054/187035903-b6c8a6db-57f5-4344-8f84-8ff157585587.png)

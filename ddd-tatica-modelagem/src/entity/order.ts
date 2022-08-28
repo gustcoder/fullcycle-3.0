@@ -14,6 +14,10 @@ export default class Order {
         this._total = this.total();
     }
 
+    get items(): OrderItem[] {
+        return this._items;
+    }
+
     validate() {
         if (this._id.length === 0) {
             throw new Error("Order ID is required!");

@@ -14,6 +14,7 @@ export default class Customer {
     private _name: string;
     private _address!: Address; // inicializacao nao obrigatoria com "!"
     private _active: boolean = false;
+    private _rewardPoints: number = 0;
 
     constructor(id: string, name: string) {
         this._id = id;
@@ -48,6 +49,14 @@ export default class Customer {
         this._name = name;
         this.validate(); // garantir a consistencia da entidade
     }
+
+    get rewardPoints(): number {
+        return this._rewardPoints;
+    }
+
+    addRewardPoints(rewardPoints: number) {
+        this._rewardPoints += rewardPoints;
+    }    
 
     // aqui expressa uma intencao/pode conter regra de negocio (semantica faz a diferenca mesmo o resultado sendo o mesmo)
     changeName(name: string) {
