@@ -11,6 +11,14 @@ describe("Order Unit Tests", () => {
         expect(order).toBeInstanceOf(Order);
     });
 
+    it("should return the items informed to an order", () => {
+        const product = new Product("1", "Teclado Casiotone CT-S200", 899);
+        const items = new OrderItem("1", product.id, product.name, product.price, 1);
+        const order = new Order("1", "1", [items]);
+
+        expect(order.items).toStrictEqual([items]);
+    });    
+
     it("should throw an error if id is empty", () => {
         expect(() => {
             const product = new Product("1", "Teclado Casiotone CT-S200", 899);

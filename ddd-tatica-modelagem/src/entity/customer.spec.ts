@@ -94,5 +94,26 @@ describe("Customer unit tests", () => {
         customer.deactivateCustomer();
 
         expect(customer.isActive()).toBe(false);
+    });
+
+    it("should return 0 reward points when customer is created", () => {
+        const customer = new Customer("1", "Tony Stark");
+        const address = new Address("Times Street", 999, "Queens")
+        customer.address = address;
+
+        expect(customer.rewardPoints).toBe(0);
+    }); 
+
+    it("should add and return reward points correctly", () => {
+        const customer = new Customer("1", "Tony Stark");
+        const address = new Address("Times Street", 999, "Queens")
+        customer.address = address;
+
+        customer.addRewardPoints(1000);
+        expect(customer.rewardPoints).toBe(1000);
+
+        customer.addRewardPoints(200);
+        expect(customer.rewardPoints).toBe(1200);
+
     }); 
 });
