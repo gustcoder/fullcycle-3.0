@@ -73,6 +73,16 @@ transform: {
 npm i uuid @types/uuid
 ```
 
+### Adicionar Sequelize Typescrypt
+```
+npm install sequelize reflect-metadata sequelize-typescript
+```
+
+### Adicionar SQlite
+```
+npm install sqlite3
+```
+
 ### Cobertura atual dos testes
 ![image](https://user-images.githubusercontent.com/52874054/187035903-b6c8a6db-57f5-4344-8f84-8ff157585587.png)
 
