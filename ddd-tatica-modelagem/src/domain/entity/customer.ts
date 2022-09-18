@@ -64,6 +64,10 @@ export default class Customer {
         this.validate(); // garantir a consistencia da entidade
     }
 
+    get address() {
+        return this._address;
+    }    
+
     set address(address: Address) {
         this._address = address;
     }
