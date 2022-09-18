@@ -23,6 +23,18 @@ export default class Address {
         }
     }
 
+    get street () {
+        return this._street;
+    }
+
+    get number () {
+        return this._number;
+    }
+
+    get neighborhood () {
+        return this._neighborhood;
+    }    
+
     toString () {
         return `${this._street}, ${this._number} - ${this._neighborhood}`;
     }
