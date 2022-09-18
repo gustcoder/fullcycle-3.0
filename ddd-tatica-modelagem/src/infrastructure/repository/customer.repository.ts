@@ -9,9 +9,9 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
             await CustomerModel.create({
                 id: customer.id,
                 name: customer.name,
-                street: customer.address['street'],
-                number: customer.address['number'],
-                neighborhood: customer.address['neighborhood'],
+                street: customer.address.street,
+                number: customer.address.number,
+                neighborhood: customer.address.neighborhood,
                 active: customer.isActive(),
                 rewardPoints: customer.rewardPoints
             });
@@ -25,9 +25,9 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
             await CustomerModel.update(
                 {
                     name: customer.name,
-                    street: customer.address['street'],
-                    number: customer.address['number'],
-                    neighborhood: customer.address['neighborhood'],
+                    street: customer.address.street,
+                    number: customer.address.number,
+                    neighborhood: customer.address.neighborhood,
                     active: customer.isActive(),
                     rewardPoints: customer.rewardPoints
                 },
