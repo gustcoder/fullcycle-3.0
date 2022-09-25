@@ -76,18 +76,18 @@ describe("Customer Repository unit tests", () => {
         expect(expectedCustomer?.name).toBe("Netflix");
     });
 
-    it("should return null when cant find a customer based on id", async () => {
-        const customerRepository = new CustomerRepository();
-        const customer = new Customer("1", "Amazon");
-        
-        const address = new Address('Times Square', 199, 'Manhattan');
-        customer.address = address;
-        
-        await customerRepository.create(customer);
-
-        const expectedCustomer = await customerRepository.find("10");
-
-        expect(expectedCustomer).toBe(null);
+    it("should throw an error when trying to find a non existent customer id", async () => {
+        expect(async () => {
+            const customerRepository = new CustomerRepository();
+            const customer = new Customer("1", "Amazon");
+            
+            const address = new Address('Times Square', 199, 'Manhattan');
+            customer.address = address;
+            
+            await customerRepository.create(customer);
+            
+            await customerRepository.find("10");
+        }).rejects.toThrow('Error finding customer!');
     });  
 
     it("should return empty when have no customers", async () => {

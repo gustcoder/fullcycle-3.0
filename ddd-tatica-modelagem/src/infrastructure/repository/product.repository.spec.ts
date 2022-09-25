@@ -74,15 +74,15 @@ describe("Product Repository unit tests", () => {
         expect(expectedProduct?.price).toBe(1000);
     });
 
-    it("should return null when cant find a product based on id", async () => {
-        const productRepository = new ProductRepository();
-        const product = new Product("1", "Teclado Casiotone CT-S200", 1000);
-        
-        await productRepository.create(product);
-
-        const expectedProduct = await productRepository.find("10");
-
-        expect(expectedProduct).toBe(null);
+    it("should throw an error when trying to find a non existent product id", async () => {
+        expect(async () => {
+            const productRepository = new ProductRepository();
+            const product = new Product("1", "Teclado Casiotone CT-S200", 1000);
+            
+            await productRepository.create(product);
+    
+            await productRepository.find("10");
+        }).rejects.toThrow('Error finding product!');
     });
 
     it("should return null when have no products", async () => {
