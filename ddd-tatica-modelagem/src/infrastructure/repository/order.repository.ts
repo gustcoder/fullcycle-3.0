@@ -6,7 +6,6 @@ export default class OrderRepository {
 
     async create(order: Order): Promise<void> {
         try {
-            console.log(order);
             await OrderModel.create(
                 {
                     id: order.id,
