@@ -85,7 +85,7 @@ describe("Product Repository unit tests", () => {
         }).rejects.toThrow('Error finding product!');
     });
 
-    it("should return null when have no products", async () => {
+    it("should return existent products", async () => {
         const productRepository = new ProductRepository();
         
         const product1 = new Product("1", "Teclado Casiotone CT-S200", 1000);        
