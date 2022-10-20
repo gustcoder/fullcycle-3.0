@@ -10,5 +10,43 @@ describe("Event Dispatcher Testes", () => {
 
         expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeDefined();
         expect(eventDispatcher.getEventHandlers("ProductCreatedEvent").length).toBe(1);
-    })
+    });
+
+    it("should unregister an event handler", () => {
+        const eventDispatcher = new EventDispatcher();
+        const eventHandler = new SendEmailWhenProductIsCreatedHandler();
+
+        eventDispatcher.register("ProductCreatedEvent", eventHandler);
+        
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeDefined();
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent").length).toBe(1);
+        
+        eventDispatcher.unregister("ProductCreatedEvent", eventHandler);
+
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeUndefined();
+    });
+
+    it("should unregister all events handler", () => {
+        const eventDispatcher = new EventDispatcher();
+        const eventHandler = new SendEmailWhenProductIsCreatedHandler();
+
+        eventDispatcher.register("ProductCreatedEvent", eventHandler);
+        eventDispatcher.register("AnotherProductCreatedEvent", eventHandler);        
+        eventDispatcher.register("OneMoreProductCreatedEvent", eventHandler);
+        
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeDefined();
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent").length).toBe(1);
+        
+        expect(eventDispatcher.getEventHandlers("AnotherProductCreatedEvent")).toBeDefined();
+        expect(eventDispatcher.getEventHandlers("AnotherProductCreatedEvent").length).toBe(1);
+        
+        expect(eventDispatcher.getEventHandlers("OneMoreProductCreatedEvent")).toBeDefined();
+        expect(eventDispatcher.getEventHandlers("OneMoreProductCreatedEvent").length).toBe(1);
+
+        eventDispatcher.unregisterAll();
+        
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeUndefined();
+        expect(eventDispatcher.getEventHandlers("AnotherProductCreatedEvent")).toBeUndefined();
+        expect(eventDispatcher.getEventHandlers("OneMoreProductCreatedEvent")).toBeUndefined();
+    });        
 })
