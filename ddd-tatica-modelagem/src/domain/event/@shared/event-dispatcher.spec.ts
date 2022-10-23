@@ -1,4 +1,5 @@
 import SendEmailWhenProductIsCreatedHandler from "../product/handler/send-email-when-product-is-created.handler";
+import ProductCreatedEvent from "../product/product-created.event";
 import EventDispatcher from "./event-dispatcher";
 
 describe("Event Dispatcher Testes", () => {
@@ -10,6 +11,7 @@ describe("Event Dispatcher Testes", () => {
 
         expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeDefined();
         expect(eventDispatcher.getEventHandlers("ProductCreatedEvent").length).toBe(1);
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")[0]).toMatchObject(eventHandler);
     });
 
     it("should unregister an event handler", () => {
@@ -20,6 +22,7 @@ describe("Event Dispatcher Testes", () => {
         
         expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeDefined();
         expect(eventDispatcher.getEventHandlers("ProductCreatedEvent").length).toBe(1);
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")[0]).toMatchObject(eventHandler);
         
         eventDispatcher.unregister("ProductCreatedEvent", eventHandler);
 
@@ -48,5 +51,27 @@ describe("Event Dispatcher Testes", () => {
         expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeUndefined();
         expect(eventDispatcher.getEventHandlers("AnotherProductCreatedEvent")).toBeUndefined();
         expect(eventDispatcher.getEventHandlers("OneMoreProductCreatedEvent")).toBeUndefined();
-    });        
+    });
+    
+    it("should notify an event handler", () => {
+        const eventDispatcher = new EventDispatcher();
+        const eventHandler = new SendEmailWhenProductIsCreatedHandler();
+        const spyEventHandler = jest.spyOn(eventHandler, "handle");
+
+        eventDispatcher.register("ProductCreatedEvent", eventHandler);
+        
+        expect(eventDispatcher.getEventHandlers("ProductCreatedEvent")).toBeDefined();
+
+        const productCreatedEvent = new ProductCreatedEvent({
+            name: "New Product",
+            description: "This is a new product created",
+            price: 1000,
+            email: "customer@example.com"
+        });
+
+        eventDispatcher.notify(productCreatedEvent);
+
+        // quando o evento notify é executado, o método handle deve ser chamado
+        expect(spyEventHandler).toBeCalled();
+    });
 })
