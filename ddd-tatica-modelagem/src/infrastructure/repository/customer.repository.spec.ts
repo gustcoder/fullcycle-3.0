@@ -29,7 +29,7 @@ describe("Customer Repository unit tests", () => {
         const customer = new Customer("1", "Amazon");
 
         const address = new Address('Times Square', 199, 'Manhattan');
-        customer.address = address;
+        customer.changAddress(address);
         
         await customerRepository.create(customer);
 
@@ -44,7 +44,7 @@ describe("Customer Repository unit tests", () => {
         const customer = new Customer("1", "Amazon");
 
         const address = new Address('Times Square', 199, 'Manhattan');
-        customer.address = address;
+        customer.changAddress(address);
         
         await customerRepository.create(customer);
         
@@ -66,7 +66,7 @@ describe("Customer Repository unit tests", () => {
         const customer = new Customer("1", "Netflix");
 
         const address = new Address('Silicon Valley', 200, 'Palo Alto');
-        customer.address = address;
+        customer.changAddress(address);
         
         await customerRepository.create(customer);
 
@@ -82,7 +82,7 @@ describe("Customer Repository unit tests", () => {
             const customer = new Customer("1", "Amazon");
             
             const address = new Address('Times Square', 199, 'Manhattan');
-            customer.address = address;
+            customer.changAddress(address);
             
             await customerRepository.create(customer);
             

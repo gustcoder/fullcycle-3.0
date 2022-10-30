@@ -31,6 +31,13 @@ describe("Customer unit tests", () => {
         expect(customer.id).toBe("10");
     });
 
+    it("should throw two events when a customer is created", () => {        
+        const customer = new Customer("1", "Full Cycle");
+
+        expect(customer.customerCreatedEventHandlers).toBeDefined;
+        expect(customer.customerCreatedEventHandlers.length).toBe(2);
+    });    
+
     it("should return the name from a customer", () => {        
         const customer = new Customer("1", "Spider Man");
         const customerName = customer.name;
@@ -70,10 +77,12 @@ describe("Customer unit tests", () => {
     it("should return true when activate a customer", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.address = address;
+        customer.changAddress(address);
 
         customer.activateCustomer();
         expect(customer.isActive()).toBe(true);
+        expect(customer.customerAddressUpdatedEventHandlers).toBeDefined;
+        expect(customer.customerAddressUpdatedEventHandlers.length).toBe(1);  
     });      
 
     it("should throw an error if try to activa a customer without Address", () => {
@@ -88,32 +97,37 @@ describe("Customer unit tests", () => {
     it("should return false when deactivate a customer", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.address = address;
+        customer.changAddress(address);
 
         customer.activateCustomer();        
         customer.deactivateCustomer();
 
         expect(customer.isActive()).toBe(false);
+        expect(customer.customerAddressUpdatedEventHandlers).toBeDefined;
+        expect(customer.customerAddressUpdatedEventHandlers.length).toBe(1);  
     });
 
     it("should return 0 reward points when customer is created", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.address = address;
+        customer.changAddress(address);
 
         expect(customer.rewardPoints).toBe(0);
+        expect(customer.customerAddressUpdatedEventHandlers).toBeDefined;
+        expect(customer.customerAddressUpdatedEventHandlers.length).toBe(1);  
     }); 
 
     it("should add and return reward points correctly", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.address = address;
+        customer.changAddress(address);
 
         customer.addRewardPoints(1000);
         expect(customer.rewardPoints).toBe(1000);
 
         customer.addRewardPoints(200);
         expect(customer.rewardPoints).toBe(1200);
-
+        expect(customer.customerAddressUpdatedEventHandlers).toBeDefined;
+        expect(customer.customerAddressUpdatedEventHandlers.length).toBe(1);  
     }); 
 });
