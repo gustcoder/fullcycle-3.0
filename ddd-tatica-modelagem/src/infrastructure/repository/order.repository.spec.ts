@@ -16,7 +16,7 @@ function createOrder(): Order {
     const customerRepository = new CustomerRepository();
     const customer = new Customer("1", "Gustavo Ramos");
     const customerAddress = new Address("Some street", 100, "Some");
-    customer.address = customerAddress;
+    customer.changAddress(customerAddress);
     
     customerRepository.create(customer);
 
@@ -90,7 +90,7 @@ describe("Customer Repository unit tests", () => {
         const customerRepository = new CustomerRepository();
         const customer2 = new Customer("2", "Teste da Silva");
         const customerAddress = new Address("Another street", 500, "Another");
-        customer2.address = customerAddress;
+        customer2.changAddress(customerAddress);
         
         customerRepository.create(customer2);
 

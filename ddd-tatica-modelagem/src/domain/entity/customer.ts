@@ -7,6 +7,13 @@ ter 2 estruturas onde:
 
 */
 
+import EventDispatcher from "../event/@shared/event-dispatcher";
+import EventHandlerInterface from "../event/@shared/event-handler.interface";
+import CustomerAddressUpdatedEvent from "../event/customer/customer-address-updated.event";
+import CustomerCreatedEvent from "../event/customer/customer-created.event";
+import CustomerAddressUpdatedEventHandler from "../event/customer/handler/customer-address-updated.handler";
+import FirstCustomerCreatedEventHandler from "../event/customer/handler/first-customer-created-event.handler";
+import SecondCustomerCreatedEventHandler from "../event/customer/handler/second-customer-created-event.handler";
 import Address from "./address";
 
 export default class Customer {
@@ -15,11 +22,14 @@ export default class Customer {
     private _address!: Address; // inicializacao nao obrigatoria com "!"
     private _active: boolean = false;
     private _rewardPoints: number = 0;
+    private _eventDispatcher: EventDispatcher;
 
     constructor(id: string, name: string) {
         this._id = id;
         this._name = name;
+        this._eventDispatcher = new EventDispatcher();
         this.validate();
+        this.triggerCreateEvents();
     }
 
     validate() {        
@@ -31,6 +41,34 @@ export default class Customer {
             throw new Error("Name is required!");
         }
     }
+
+    triggerCreateEvents() {
+        const customerFirstEventHandler = new FirstCustomerCreatedEventHandler();
+        const customerSecondEventHandler = new SecondCustomerCreatedEventHandler();
+
+        this._eventDispatcher.register("CustomerCreatedEvent", customerFirstEventHandler);
+        this._eventDispatcher.register("CustomerCreatedEvent", customerSecondEventHandler);
+
+        const firstEventData = {
+            message: "Esse é o primeiro console.log do evento: CustomerCreated"
+        };
+        const firstEventCustomerCreated = new CustomerCreatedEvent(firstEventData);        
+        this._eventDispatcher.notify(firstEventCustomerCreated);
+
+        const secondEventData = {
+            message: "Esse é o segundo console.log do evento: CustomerCreated"
+        };
+        const secondEventCustomerCreated = new CustomerCreatedEvent(secondEventData);        
+        this._eventDispatcher.notify(secondEventCustomerCreated);   
+    }
+
+    get customerCreatedEventHandlers(): EventHandlerInterface[] {
+        return this._eventDispatcher.getEventHandlers("CustomerCreatedEvent");
+    }
+
+    get customerAddressUpdatedEventHandlers(): EventHandlerInterface[] {
+        return this._eventDispatcher.getEventHandlers("CustomerAddressUpdatedEvent");
+    }       
 
     get id(): string {
         return this._id;
@@ -68,8 +106,16 @@ export default class Customer {
         return this._address;
     }    
 
-    set address(address: Address) {
+    changAddress(address: Address) {
         this._address = address;
+        const customerAddressUpdatedEventHandler = new CustomerAddressUpdatedEventHandler();
+        this._eventDispatcher.register("CustomerAddressUpdatedEvent", customerAddressUpdatedEventHandler);
+
+        const customerAddressUpdatedEventData = {
+            message: `Endereço do cliente: ${this._id}, ${this._name} alterado para: ${this._address}`
+        };
+        const customerAddressUpdated = new CustomerAddressUpdatedEvent(customerAddressUpdatedEventData);        
+        this._eventDispatcher.notify(customerAddressUpdated);        
     }
 
     // exemplo de expressar a regra, ao inves de apenas usar "getters x setters"
