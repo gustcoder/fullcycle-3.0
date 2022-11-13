@@ -77,7 +77,7 @@ describe("Customer unit tests", () => {
     it("should return true when activate a customer", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.changAddress(address);
+        customer.changeAddress(address);
 
         customer.activateCustomer();
         expect(customer.isActive()).toBe(true);
@@ -97,7 +97,7 @@ describe("Customer unit tests", () => {
     it("should return false when deactivate a customer", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.changAddress(address);
+        customer.changeAddress(address);
 
         customer.activateCustomer();        
         customer.deactivateCustomer();
@@ -110,7 +110,7 @@ describe("Customer unit tests", () => {
     it("should return 0 reward points when customer is created", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.changAddress(address);
+        customer.changeAddress(address);
 
         expect(customer.rewardPoints).toBe(0);
         expect(customer.customerAddressUpdatedEventHandlers).toBeDefined;
@@ -120,7 +120,7 @@ describe("Customer unit tests", () => {
     it("should add and return reward points correctly", () => {
         const customer = new Customer("1", "Tony Stark");
         const address = new Address("Times Street", 999, "Queens")
-        customer.changAddress(address);
+        customer.changeAddress(address);
 
         customer.addRewardPoints(1000);
         expect(customer.rewardPoints).toBe(1000);
