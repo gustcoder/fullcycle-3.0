@@ -83,6 +83,11 @@ npm install sequelize reflect-metadata sequelize-typescript
 npm install sqlite3
 ```
 
+### Adicionar UUID
+```
+npm install uuidv4
+```
+
 ### Cobertura atual dos testes
 ![image](https://user-images.githubusercontent.com/52874054/194780829-2e14bab2-2822-40cc-b5d8-2042709e777e.png)
 
