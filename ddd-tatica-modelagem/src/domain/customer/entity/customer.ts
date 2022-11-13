@@ -107,7 +107,7 @@ export default class Customer {
         return this._address;
     }    
 
-    changAddress(address: Address) {
+    changeAddress(address: Address) {
         this._address = address;
         const customerAddressUpdatedEventHandler = new CustomerAddressUpdatedEventHandler();
         this._eventDispatcher.register("CustomerAddressUpdatedEvent", customerAddressUpdatedEventHandler);

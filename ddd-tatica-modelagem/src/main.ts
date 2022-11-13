@@ -7,7 +7,7 @@ import Product from "./domain/product/entity/product";
 let customer = new Customer("1", "Gustavo Ramos");
 const address = new Address("Rua Teste", 999, "Bairro Teste");
 
-customer.changAddress(address);
+customer.changeAddress(address);
 customer.activateCustomer();
 
 let product1 = new Product("1", "Console Sony Playstation 4", 3150);
