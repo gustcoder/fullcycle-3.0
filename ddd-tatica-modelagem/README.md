@@ -92,3 +92,11 @@ npm install uuidv4
 ![image](https://user-images.githubusercontent.com/52874054/194780829-2e14bab2-2822-40cc-b5d8-2042709e777e.png)
 
 
+### Considerações Finais
+```
+- Começar pelos domínios
+- Conversar com os Domains Experts (montar regras de negócio)
+- Postergar decisões tecnologias
+- Utilizar Factories
+- NÃO trocar a ordem na hora de criar um novo projeto (Ex.: começar pelo CRUD)
+```
