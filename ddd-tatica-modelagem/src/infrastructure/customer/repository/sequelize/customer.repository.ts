@@ -1,5 +1,6 @@
 import Customer from "../../../../domain/customer/entity/customer";
 import CustomerRepositoryInterface from "../../../../domain/customer/repository/customer-repository.interface";
+import Address from "../../../../domain/customer/value-object/address";
 import CustomerModel from "./customer.model";
 
 export default class CustomerRepository implements CustomerRepositoryInterface {
@@ -51,6 +52,8 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
                 rejectOnEmpty: true
             });
             const customer = findCustomer ? new Customer(findCustomer.id, findCustomer.name) : null;
+            const address = new Address(findCustomer.street, findCustomer.number, findCustomer.neighborhood)
+            customer?.changeAddress(address)
 
             return customer;
         } catch (error) {
